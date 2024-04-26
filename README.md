@@ -1,5 +1,5 @@
 # dwm
-My personal build of DWM, customized with a set of "common sense" and spectrwm-esque patches and keybinds.
+My personal build of DWM, customized with a set of "common sense", spectrwm-esque patches and keybinds.
 
 
 ## Setup
@@ -38,37 +38,44 @@ are specific to my machine and might not work out-of-the-box for you.
 
 
 ## Keybinds
-
-- alt + b               - Toggles bar
-
+### Window movement
 - alt + j               - Move to next window
 - alt + k               - Move to previous window
 - alt + enter           - Move window to/from stack
 - alt + x               - Kill window
 
+
+### Stack
 - alt + i               - Increment number of windows in stack
 - alt + d               - Decrement number of windows in stack
+
+
+### Sizing
 - alt + h               - Enlarge window horizontally
 - alt + l               - Decrease window horizontally
 - alt + shift + u       - Enlarge window vertically
 - alt + shift + d       - Decrease window vertically
 - alt + shift + r       - Reset vertical window sizing
 
+
+### Tags
 - alt + tab             - Move to last viewed tag
 - alt + \<num\>         - Move to selected tag
 - alt + shift + \<num\> - Move window to selected tag
 - alt + shift + h       - Move to previous tag
 - alt + shift + l       - Move to next tag
 
-- alt + space           - Toggle current and last layout
 - alt + shift + space   - Toggle window floating
 - alt + s               - Toggle window sticky
 
+### Monitors
 - alt + .               - Move to next monitor
 - alt + ,               - Move to previous monitor
 - alt + shift + .       - Move window (and view) to next monitor
 - alt + shift + ,       - Move window (and view) to previous monitor
 
+### Layouts
+- alt + space           - Toggle current and last layout
 - alt + ctrl + h        - Previous layout
 - alt + ctrl + l        - Next layout
 - alt + shift + j       - Move window up stack
@@ -79,9 +86,13 @@ are specific to my machine and might not work out-of-the-box for you.
 - alt + g               - Use grid layout
 - alt + m               - Use monocle layout
 
+
+### Misc 
 - alt + shift + q       - Restart dwm session
 - alt + ctrl + shift + q- Exit dwm to tty
+- alt + b               - Toggles bar
 
+### Programs
 - alt + p               - Opens rofi
 - alt + shift + enter   - Spawns terminal (st)
 - alt + \`              - Toggles scratchpad
