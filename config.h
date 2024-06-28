@@ -166,12 +166,19 @@ static const Key keys[] = {
     
     { MODKEY,                       XK_r,      spawn,          SHCMD("for i in $(seq 1 25); do pkill -RTMIN+$i dwmblocks; done") },
     { 0,                            XK_Print,  spawn,          SHCMD("scrot -s -f /home/$USER/Photos/screenshots/%Y-%m-%d_%H:%M:%S.png") },
+    { ShiftMask,                    XK_Print,  spawn,          SHCMD("scrot /home/$USER/Photos/screenshots/%Y-%m-%d_%H:%M:%S.png") },
     { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("light -A 10; pkill -RTMIN+2 dwmblocks") },
     { 0,          XF86XK_MonBrightnessDown,    spawn,          SHCMD("light -U 10; pkill -RTMIN+2 dwmblocks") },
     { 0,          XF86XK_AudioRaiseVolume,     spawn,          SHCMD("pulsemixer --change-volume +5; pkill -RTMIN+2 dwmblocks") },
     { 0,          XF86XK_AudioLowerVolume,     spawn,          SHCMD("pulsemixer --change-volume -5; pkill -RTMIN+2 dwmblocks") },
     { 0,          XF86XK_AudioMute,            spawn,          SHCMD("pulsemixer --toggle-mute; pkill -RTMIN+2 dwmblocks") },
     { 0,          XF86XK_AudioMicMute,         spawn,          SHCMD("amixer set Capture toggle") },
+
+    // Execute programs
+    { ALTMOD,                       XK_c,      spawn,          SHCMD("st -T orpie -e orpie") },
+    { ALTMOD,                       XK_m,      spawn,          SHCMD("st -T ncmpcpp -e ncmpcpp") },
+    { ALTMOD,                       XK_n,      spawn,          SHCMD("st -T newsboat -e newsboat") },
+    { ALTMOD,                       XK_b,      spawn,          SHCMD("flatpak run com.vivaldi.Vivaldi") },
 
     TAGKEYS(                        XK_1,                      0)
         TAGKEYS(                        XK_2,                      1)
