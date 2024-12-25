@@ -1,0 +1,31 @@
+--- dwm.c
++++ dwm.c
+@@ -1879,7 +1879,7 @@ updategeom(void)
+ 				else
+ 					mons = createmon();
+ 			}
+-			for (i = 0, m = mons; i < nn && m; m = m->next, i++){
++			for (i = 0, m = mons; i < nn && m; m = m->next, i++)
+ 				if (i >= n
+ 				|| unique[i].x_org != m->mx || unique[i].y_org != m->my
+ 				|| unique[i].width != m->mw || unique[i].height != m->mh)
+@@ -1892,10 +1892,6 @@ updategeom(void)
+ 					m->mh = m->wh = unique[i].height;
+ 					updatebarpos(m);
+ 				}
+-				if(i == statmonval)
+-					statmon = m;
+-			}
+-
+ 		} else { /* less monitors available nn < n */
+ 			for (i = nn; i < n; i++) {
+ 				for (m = mons; m && m->next; m = m->next);
+@@ -1909,8 +1905,6 @@ updategeom(void)
+ 				}
+ 				if (m == selmon)
+ 					selmon = mons;
+-				if (m == statmon)
+-					statmon = mons;
+ 				cleanupmon(m);
+ 			}
+ 		}
