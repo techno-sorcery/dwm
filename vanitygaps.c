@@ -1,143 +1,143 @@
 /* Key binding functions */
-/* static void defaultgaps(const Arg *arg); */
-/* static void incrgaps(const Arg *arg); */
-/* static void incrigaps(const Arg *arg); */
-/* static void incrogaps(const Arg *arg); */
-/* static void incrohgaps(const Arg *arg); */
-/* static void incrovgaps(const Arg *arg); */
-/* static void incrihgaps(const Arg *arg); */
-/* static void incrivgaps(const Arg *arg); */
-/* static void togglegaps(const Arg *arg); */
+static void defaultgaps(const Arg *arg);
+static void incrgaps(const Arg *arg);
+static void incrigaps(const Arg *arg);
+static void incrogaps(const Arg *arg);
+static void incrohgaps(const Arg *arg);
+static void incrovgaps(const Arg *arg);
+static void incrihgaps(const Arg *arg);
+static void incrivgaps(const Arg *arg);
+static void togglegaps(const Arg *arg);
 /* Layouts (delete the ones you do not need) */
 static void bstack(Monitor *m);
 static void bstackhoriz(Monitor *m);
 static void centeredmaster(Monitor *m);
 static void centeredfloatingmaster(Monitor *m);
 static void deck(Monitor *m);
-/* static void dwindle(Monitor *m); */
-/* static void fibonacci(Monitor *m, int s); */
-/* static void grid(Monitor *m); */
-/* static void nrowgrid(Monitor *m); */
-/* static void spiral(Monitor *m); */
+static void dwindle(Monitor *m);
+static void fibonacci(Monitor *m, int s);
+static void grid(Monitor *m);
+static void nrowgrid(Monitor *m);
+static void spiral(Monitor *m);
 static void tile(Monitor *m);
 /* Internals */
 static void getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc);
 static void getfacts(Monitor *m, int msize, int ssize, float *mf, float *sf, int *mr, int *sr);
-/* static void setgaps(int oh, int ov, int ih, int iv); */
+static void setgaps(int oh, int ov, int ih, int iv);
 
 /* Settings */
 #if !PERTAG_PATCH
 static int enablegaps = 1;
 #endif // PERTAG_PATCH
 
-/* void */
-/* setgaps(int oh, int ov, int ih, int iv) */
-/* { */
-/* 	if (oh < 0) oh = 0; */
-/* 	if (ov < 0) ov = 0; */
-/* 	if (ih < 0) ih = 0; */
-/* 	if (iv < 0) iv = 0; */
+void
+setgaps(int oh, int ov, int ih, int iv)
+{
+	if (oh < 0) oh = 0;
+	if (ov < 0) ov = 0;
+	if (ih < 0) ih = 0;
+	if (iv < 0) iv = 0;
 
-/* 	selmon->gappoh = oh; */
-/* 	selmon->gappov = ov; */
-/* 	selmon->gappih = ih; */
-/* 	selmon->gappiv = iv; */
-/* 	arrange(selmon); */
-/* } */
+	selmon->gappoh = oh;
+	selmon->gappov = ov;
+	selmon->gappih = ih;
+	selmon->gappiv = iv;
+	arrange(selmon);
+}
 
-/* void */
-/* togglegaps(const Arg *arg) */
-/* { */
-/* 	#if PERTAG_PATCH */
-/* 	selmon->pertag->enablegaps[selmon->pertag->curtag] = !selmon->pertag->enablegaps[selmon->pertag->curtag]; */
-/* 	#else */
-/* 	enablegaps = !enablegaps; */
-/* 	#endif // PERTAG_PATCH */
-/* 	arrange(NULL); */
-/* } */
+void
+togglegaps(const Arg *arg)
+{
+	#if PERTAG_PATCH
+	selmon->pertag->enablegaps[selmon->pertag->curtag] = !selmon->pertag->enablegaps[selmon->pertag->curtag];
+	#else
+	enablegaps = !enablegaps;
+	#endif // PERTAG_PATCH
+	arrange(NULL);
+}
 
-/* void */
-/* defaultgaps(const Arg *arg) */
-/* { */
-/* 	setgaps(gappoh, gappov, gappih, gappiv); */
-/* } */
+void
+defaultgaps(const Arg *arg)
+{
+	setgaps(gappoh, gappov, gappih, gappiv);
+}
 
-/* void */
-/* incrgaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh + arg->i, */
-/* 		selmon->gappov + arg->i, */
-/* 		selmon->gappih + arg->i, */
-/* 		selmon->gappiv + arg->i */
-/* 	); */
-/* } */
+void
+incrgaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh + arg->i,
+		selmon->gappov + arg->i,
+		selmon->gappih + arg->i,
+		selmon->gappiv + arg->i
+	);
+}
 
-/* void */
-/* incrigaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh, */
-/* 		selmon->gappov, */
-/* 		selmon->gappih + arg->i, */
-/* 		selmon->gappiv + arg->i */
-/* 	); */
-/* } */
+void
+incrigaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh,
+		selmon->gappov,
+		selmon->gappih + arg->i,
+		selmon->gappiv + arg->i
+	);
+}
 
-/* void */
-/* incrogaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh + arg->i, */
-/* 		selmon->gappov + arg->i, */
-/* 		selmon->gappih, */
-/* 		selmon->gappiv */
-/* 	); */
-/* } */
+void
+incrogaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh + arg->i,
+		selmon->gappov + arg->i,
+		selmon->gappih,
+		selmon->gappiv
+	);
+}
 
-/* void */
-/* incrohgaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh + arg->i, */
-/* 		selmon->gappov, */
-/* 		selmon->gappih, */
-/* 		selmon->gappiv */
-/* 	); */
-/* } */
+void
+incrohgaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh + arg->i,
+		selmon->gappov,
+		selmon->gappih,
+		selmon->gappiv
+	);
+}
 
-/* void */
-/* incrovgaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh, */
-/* 		selmon->gappov + arg->i, */
-/* 		selmon->gappih, */
-/* 		selmon->gappiv */
-/* 	); */
-/* } */
+void
+incrovgaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh,
+		selmon->gappov + arg->i,
+		selmon->gappih,
+		selmon->gappiv
+	);
+}
 
-/* void */
-/* incrihgaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh, */
-/* 		selmon->gappov, */
-/* 		selmon->gappih + arg->i, */
-/* 		selmon->gappiv */
-/* 	); */
-/* } */
+void
+incrihgaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh,
+		selmon->gappov,
+		selmon->gappih + arg->i,
+		selmon->gappiv
+	);
+}
 
-/* void */
-/* incrivgaps(const Arg *arg) */
-/* { */
-/* 	setgaps( */
-/* 		selmon->gappoh, */
-/* 		selmon->gappov, */
-/* 		selmon->gappih, */
-/* 		selmon->gappiv + arg->i */
-/* 	); */
-/* } */
+void
+incrivgaps(const Arg *arg)
+{
+	setgaps(
+		selmon->gappoh,
+		selmon->gappov,
+		selmon->gappih,
+		selmon->gappiv + arg->i
+	);
+}
 
 void
 getgaps(Monitor *m, int *oh, int *ov, int *ih, int *iv, unsigned int *nc)
@@ -470,104 +470,104 @@ deck(Monitor *m)
  * Fibonacci layout + gaps
  * https://dwm.suckless.org/patches/fibonacci/
  */
-/* void */
-/* fibonacci(Monitor *m, int s) */
-/* { */
-/* 	unsigned int i, n; */
-/* 	int nx, ny, nw, nh; */
-/* 	int oh, ov, ih, iv; */
-/* 	int nv, hrest = 0, wrest = 0, r = 1; */
-/* 	Client *c; */
+void
+fibonacci(Monitor *m, int s)
+{
+	unsigned int i, n;
+	int nx, ny, nw, nh;
+	int oh, ov, ih, iv;
+	int nv, hrest = 0, wrest = 0, r = 1;
+	Client *c;
 
-/* 	getgaps(m, &oh, &ov, &ih, &iv, &n); */
-/* 	if (n == 0) */
-/* 		return; */
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
+	if (n == 0)
+		return;
 
-/* 	nx = m->wx + ov; */
-/* 	ny = m->wy + oh; */
-/* 	nw = m->ww - 2*ov; */
-/* 	nh = m->wh - 2*oh; */
+	nx = m->wx + ov;
+	ny = m->wy + oh;
+	nw = m->ww - 2*ov;
+	nh = m->wh - 2*oh;
 
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next)) { */
-/* 		if (r) { */
-/* 			if ((i % 2 && (nh - ih) / 2 <= (bh + 2*c->bw)) */
-/* 			   || (!(i % 2) && (nw - iv) / 2 <= (bh + 2*c->bw))) { */
-/* 				r = 0; */
-/* 			} */
-/* 			if (r && i < n - 1) { */
-/* 				if (i % 2) { */
-/* 					nv = (nh - ih) / 2; */
-/* 					hrest = nh - 2*nv - ih; */
-/* 					nh = nv; */
-/* 				} else { */
-/* 					nv = (nw - iv) / 2; */
-/* 					wrest = nw - 2*nv - iv; */
-/* 					nw = nv; */
-/* 				} */
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next)) {
+		if (r) {
+			if ((i % 2 && (nh - ih) / 2 <= (bh + 2*c->bw))
+			   || (!(i % 2) && (nw - iv) / 2 <= (bh + 2*c->bw))) {
+				r = 0;
+			}
+			if (r && i < n - 1) {
+				if (i % 2) {
+					nv = (nh - ih) / 2;
+					hrest = nh - 2*nv - ih;
+					nh = nv;
+				} else {
+					nv = (nw - iv) / 2;
+					wrest = nw - 2*nv - iv;
+					nw = nv;
+				}
 
-/* 				if ((i % 4) == 2 && !s) */
-/* 					nx += nw + iv; */
-/* 				else if ((i % 4) == 3 && !s) */
-/* 					ny += nh + ih; */
-/* 			} */
+				if ((i % 4) == 2 && !s)
+					nx += nw + iv;
+				else if ((i % 4) == 3 && !s)
+					ny += nh + ih;
+			}
 
-/* 			if ((i % 4) == 0) { */
-/* 				if (s) { */
-/* 					ny += nh + ih; */
-/* 					nh += hrest; */
-/* 				} */
-/* 				else { */
-/* 					nh -= hrest; */
-/* 					ny -= nh + ih; */
-/* 				} */
-/* 			} */
-/* 			else if ((i % 4) == 1) { */
-/* 				nx += nw + iv; */
-/* 				nw += wrest; */
-/* 			} */
-/* 			else if ((i % 4) == 2) { */
-/* 				ny += nh + ih; */
-/* 				nh += hrest; */
-/* 				if (i < n - 1) */
-/* 					nw += wrest; */
-/* 			} */
-/* 			else if ((i % 4) == 3) { */
-/* 				if (s) { */
-/* 					nx += nw + iv; */
-/* 					nw -= wrest; */
-/* 				} else { */
-/* 					nw -= wrest; */
-/* 					nx -= nw + iv; */
-/* 					nh += hrest; */
-/* 				} */
-/* 			} */
-/* 			if (i == 0)	{ */
-/* 				if (n != 1) { */
-/* 					nw = (m->ww - iv - 2*ov) - (m->ww - iv - 2*ov) * (1 - m->mfact); */
-/* 					wrest = 0; */
-/* 				} */
-/* 				ny = m->wy + oh; */
-/* 			} */
-/* 			else if (i == 1) */
-/* 				nw = m->ww - nw - iv - 2*ov; */
-/* 			i++; */
-/* 		} */
+			if ((i % 4) == 0) {
+				if (s) {
+					ny += nh + ih;
+					nh += hrest;
+				}
+				else {
+					nh -= hrest;
+					ny -= nh + ih;
+				}
+			}
+			else if ((i % 4) == 1) {
+				nx += nw + iv;
+				nw += wrest;
+			}
+			else if ((i % 4) == 2) {
+				ny += nh + ih;
+				nh += hrest;
+				if (i < n - 1)
+					nw += wrest;
+			}
+			else if ((i % 4) == 3) {
+				if (s) {
+					nx += nw + iv;
+					nw -= wrest;
+				} else {
+					nw -= wrest;
+					nx -= nw + iv;
+					nh += hrest;
+				}
+			}
+			if (i == 0)	{
+				if (n != 1) {
+					nw = (m->ww - iv - 2*ov) - (m->ww - iv - 2*ov) * (1 - m->mfact);
+					wrest = 0;
+				}
+				ny = m->wy + oh;
+			}
+			else if (i == 1)
+				nw = m->ww - nw - iv - 2*ov;
+			i++;
+		}
 
-/* 		resize(c, nx, ny, nw - (2*c->bw), nh - (2*c->bw), False); */
-/* 	} */
-/* } */
+		resize(c, nx, ny, nw - (2*c->bw), nh - (2*c->bw), False);
+	}
+}
 
-/* void */
-/* dwindle(Monitor *m) */
-/* { */
-/* 	fibonacci(m, 1); */
-/* } */
+void
+dwindle(Monitor *m)
+{
+	fibonacci(m, 1);
+}
 
-/* void */
-/* spiral(Monitor *m) */
-/* { */
-/* 	fibonacci(m, 0); */
-/* } */
+void
+spiral(Monitor *m)
+{
+	fibonacci(m, 0);
+}
 
 /*
  * Gappless grid layout + gaps (ironically)
@@ -626,158 +626,158 @@ gaplessgrid(Monitor *m)
  * Gridmode layout + gaps
  * https://dwm.suckless.org/patches/gridmode/
  */
-/* void */
-/* grid(Monitor *m) */
-/* { */
-/* 	unsigned int i, n; */
-/* 	int cx, cy, cw, ch, cc, cr, chrest, cwrest, cols, rows; */
-/* 	int oh, ov, ih, iv; */
-/* 	Client *c; */
+void
+grid(Monitor *m)
+{
+	unsigned int i, n;
+	int cx, cy, cw, ch, cc, cr, chrest, cwrest, cols, rows;
+	int oh, ov, ih, iv;
+	Client *c;
 
-/* 	getgaps(m, &oh, &ov, &ih, &iv, &n); */
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
 
-/* 	/1* grid dimensions *1/ */
-/* 	for (rows = 0; rows <= n/2; rows++) */
-/* 		if (rows*rows >= n) */
-/* 			break; */
-/* 	cols = (rows && (rows - 1) * rows >= n) ? rows - 1 : rows; */
+	/* grid dimensions */
+	for (rows = 0; rows <= n/2; rows++)
+		if (rows*rows >= n)
+			break;
+	cols = (rows && (rows - 1) * rows >= n) ? rows - 1 : rows;
 
-/* 	/1* window geoms (cell height/width) *1/ */
-/* 	ch = (m->wh - 2*oh - ih * (rows - 1)) / (rows ? rows : 1); */
-/* 	cw = (m->ww - 2*ov - iv * (cols - 1)) / (cols ? cols : 1); */
-/* 	chrest = (m->wh - 2*oh - ih * (rows - 1)) - ch * rows; */
-/* 	cwrest = (m->ww - 2*ov - iv * (cols - 1)) - cw * cols; */
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) { */
-/* 		cc = i / rows; */
-/* 		cr = i % rows; */
-/* 		cx = m->wx + ov + cc * (cw + iv) + MIN(cc, cwrest); */
-/* 		cy = m->wy + oh + cr * (ch + ih) + MIN(cr, chrest); */
-/* 		resize(c, cx, cy, cw + (cc < cwrest ? 1 : 0) - 2*c->bw, ch + (cr < chrest ? 1 : 0) - 2*c->bw, False); */
-/* 	} */
-/* } */
+	/* window geoms (cell height/width) */
+	ch = (m->wh - 2*oh - ih * (rows - 1)) / (rows ? rows : 1);
+	cw = (m->ww - 2*ov - iv * (cols - 1)) / (cols ? cols : 1);
+	chrest = (m->wh - 2*oh - ih * (rows - 1)) - ch * rows;
+	cwrest = (m->ww - 2*ov - iv * (cols - 1)) - cw * cols;
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) {
+		cc = i / rows;
+		cr = i % rows;
+		cx = m->wx + ov + cc * (cw + iv) + MIN(cc, cwrest);
+		cy = m->wy + oh + cr * (ch + ih) + MIN(cr, chrest);
+		resize(c, cx, cy, cw + (cc < cwrest ? 1 : 0) - 2*c->bw, ch + (cr < chrest ? 1 : 0) - 2*c->bw, False);
+	}
+}
 
 /*
  * Horizontal grid layout + gaps
  * https://dwm.suckless.org/patches/horizgrid/
  */
-/* void */
-/* horizgrid(Monitor *m) { */
-/* 	Client *c; */
-/* 	unsigned int n, i; */
-/* 	int oh, ov, ih, iv; */
-/* 	int mx = 0, my = 0, mh = 0, mw = 0; */
-/* 	int sx = 0, sy = 0, sh = 0, sw = 0; */
-/* 	int ntop, nbottom = 1; */
-/* 	float mfacts = 0, sfacts = 0; */
-/* 	int mrest, srest, mtotal = 0, stotal = 0; */
+void
+horizgrid(Monitor *m) {
+	Client *c;
+	unsigned int n, i;
+	int oh, ov, ih, iv;
+	int mx = 0, my = 0, mh = 0, mw = 0;
+	int sx = 0, sy = 0, sh = 0, sw = 0;
+	int ntop, nbottom = 1;
+	float mfacts = 0, sfacts = 0;
+	int mrest, srest, mtotal = 0, stotal = 0;
 
-/* 	/1* Count windows *1/ */
-/* 	getgaps(m, &oh, &ov, &ih, &iv, &n); */
-/* 	if (n == 0) */
-/* 		return; */
+	/* Count windows */
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
+	if (n == 0)
+		return;
 
-/* 	if (n <= 2) */
-/* 		ntop = n; */
-/* 	else { */
-/* 		ntop = n / 2; */
-/* 		nbottom = n - ntop; */
-/* 	} */
-/* 	sx = mx = m->wx + ov; */
-/* 	sy = my = m->wy + oh; */
-/* 	sh = mh = m->wh - 2*oh; */
-/* 	sw = mw = m->ww - 2*ov; */
+	if (n <= 2)
+		ntop = n;
+	else {
+		ntop = n / 2;
+		nbottom = n - ntop;
+	}
+	sx = mx = m->wx + ov;
+	sy = my = m->wy + oh;
+	sh = mh = m->wh - 2*oh;
+	sw = mw = m->ww - 2*ov;
 
-/* 	if (n > ntop) { */
-/* 		sh = (mh - ih) / 2; */
-/* 		mh = mh - ih - sh; */
-/* 		sy = my + mh + ih; */
-/* 		mw = m->ww - 2*ov - iv * (ntop - 1); */
-/* 		sw = m->ww - 2*ov - iv * (nbottom - 1); */
-/* 	} */
+	if (n > ntop) {
+		sh = (mh - ih) / 2;
+		mh = mh - ih - sh;
+		sy = my + mh + ih;
+		mw = m->ww - 2*ov - iv * (ntop - 1);
+		sw = m->ww - 2*ov - iv * (nbottom - 1);
+	}
 
-/* 	/1* calculate facts *1/ */
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) */
-/* 		if (i < ntop) */
-/* 			mfacts += c->cfact; */
-/* 		else */
-/* 			sfacts += c->cfact; */
+	/* calculate facts */
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < ntop)
+			mfacts += c->cfact;
+		else
+			sfacts += c->cfact;
 
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) */
-/* 		if (i < ntop) */
-/* 			mtotal += mh * (c->cfact / mfacts); */
-/* 		else */
-/* 			stotal += sw * (c->cfact / sfacts); */
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < ntop)
+			mtotal += mh * (c->cfact / mfacts);
+		else
+			stotal += sw * (c->cfact / sfacts);
 
-/* 	mrest = mh - mtotal; */
-/* 	srest = sw - stotal; */
+	mrest = mh - mtotal;
+	srest = sw - stotal;
 
-/* 	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++) */
-/* 		if (i < ntop) { */
-/* 			resize(c, mx, my, mw * (c->cfact / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), mh - (2*c->bw), 0); */
-/* 			mx += WIDTH(c) + iv; */
-/* 		} else { */
-/* 			resize(c, sx, sy, sw * (c->cfact / sfacts) + ((i - ntop) < srest ? 1 : 0) - (2*c->bw), sh - (2*c->bw), 0); */
-/* 			sx += WIDTH(c) + iv; */
-/* 		} */
-/* } */
+	for (i = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), i++)
+		if (i < ntop) {
+			resize(c, mx, my, mw * (c->cfact / mfacts) + (i < mrest ? 1 : 0) - (2*c->bw), mh - (2*c->bw), 0);
+			mx += WIDTH(c) + iv;
+		} else {
+			resize(c, sx, sy, sw * (c->cfact / sfacts) + ((i - ntop) < srest ? 1 : 0) - (2*c->bw), sh - (2*c->bw), 0);
+			sx += WIDTH(c) + iv;
+		}
+}
 
 /*
  * nrowgrid layout + gaps
  * https://dwm.suckless.org/patches/nrowgrid/
  */
-/* void */
-/* nrowgrid(Monitor *m) */
-/* { */
-/* 	unsigned int n; */
-/* 	int ri = 0, ci = 0;  /1* counters *1/ */
-/* 	int oh, ov, ih, iv;                         /1* vanitygap settings *1/ */
-/* 	unsigned int cx, cy, cw, ch;                /1* client geometry *1/ */
-/* 	unsigned int uw = 0, uh = 0, uc = 0;        /1* utilization trackers *1/ */
-/* 	unsigned int cols, rows = m->nmaster + 1; */
-/* 	Client *c; */
+void
+nrowgrid(Monitor *m)
+{
+	unsigned int n;
+	int ri = 0, ci = 0;  /* counters */
+	int oh, ov, ih, iv;                         /* vanitygap settings */
+	unsigned int cx, cy, cw, ch;                /* client geometry */
+	unsigned int uw = 0, uh = 0, uc = 0;        /* utilization trackers */
+	unsigned int cols, rows = m->nmaster + 1;
+	Client *c;
 
-/* 	/1* count clients *1/ */
-/* 	getgaps(m, &oh, &ov, &ih, &iv, &n); */
+	/* count clients */
+	getgaps(m, &oh, &ov, &ih, &iv, &n);
 
-/* 	/1* nothing to do here *1/ */
-/* 	if (n == 0) */
-/* 		return; */
+	/* nothing to do here */
+	if (n == 0)
+		return;
 
-/* 	/1* force 2 clients to always split vertically *1/ */
-/* 	if (FORCE_VSPLIT && n == 2) */
-/* 		rows = 1; */
+	/* force 2 clients to always split vertically */
+	if (FORCE_VSPLIT && n == 2)
+		rows = 1;
 
-/* 	/1* never allow empty rows *1/ */
-/* 	if (n < rows) */
-/* 		rows = n; */
+	/* never allow empty rows */
+	if (n < rows)
+		rows = n;
 
-/* 	/1* define first row *1/ */
-/* 	cols = n / rows; */
-/* 	uc = cols; */
-/* 	cy = m->wy + oh; */
-/* 	ch = (m->wh - 2*oh - ih*(rows - 1)) / rows; */
-/* 	uh = ch; */
+	/* define first row */
+	cols = n / rows;
+	uc = cols;
+	cy = m->wy + oh;
+	ch = (m->wh - 2*oh - ih*(rows - 1)) / rows;
+	uh = ch;
 
-/* 	for (c = nexttiled(m->clients); c; c = nexttiled(c->next), ci++) { */
-/* 		if (ci == cols) { */
-/* 			uw = 0; */
-/* 			ci = 0; */
-/* 			ri++; */
+	for (c = nexttiled(m->clients); c; c = nexttiled(c->next), ci++) {
+		if (ci == cols) {
+			uw = 0;
+			ci = 0;
+			ri++;
 
-/* 			/1* next row *1/ */
-/* 			cols = (n - uc) / (rows - ri); */
-/* 			uc += cols; */
-/* 			cy = m->wy + oh + uh + ih; */
-/* 			uh += ch + ih; */
-/* 		} */
+			/* next row */
+			cols = (n - uc) / (rows - ri);
+			uc += cols;
+			cy = m->wy + oh + uh + ih;
+			uh += ch + ih;
+		}
 
-/* 		cx = m->wx + ov + uw; */
-/* 		cw = (m->ww - 2*ov - uw) / (cols - ci); */
-/* 		uw += cw + iv; */
+		cx = m->wx + ov + uw;
+		cw = (m->ww - 2*ov - uw) / (cols - ci);
+		uw += cw + iv;
 
-/* 		resize(c, cx, cy, cw - (2*c->bw), ch - (2*c->bw), 0); */
-/* 	} */
-/* } */
+		resize(c, cx, cy, cw - (2*c->bw), ch - (2*c->bw), 0);
+	}
+}
 
 /*
  * Default tile layout + gaps
