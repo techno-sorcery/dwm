@@ -1,11 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 5;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
-static const unsigned int gappih    = 8;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 8;       /* vert inner gap between windows */
+static const unsigned int gappih    = 0;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 0;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 0;       /* horiz outer gap between windows and screen edge */
 static const unsigned int gappov    = 0;       /* vert outer gap between windows and screen edge */
 static       int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
@@ -203,6 +203,7 @@ static const Key keys[] = {
     { ALTMOD,                       XK_m,      spawn,          SHCMD("st -T ncmpcpp -e ncmpcpp") },
     { ALTMOD,                       XK_n,      spawn,          SHCMD("st -T newsboat -e newsboat") },
     { ALTMOD,                       XK_b,      spawn,          SHCMD("flatpak run com.vivaldi.Vivaldi") },
+    { ALTMOD,                       XK_s,      spawn,          SHCMD("flatpak run org.signal.Signal") },
 };
 
 /* button definitions */
