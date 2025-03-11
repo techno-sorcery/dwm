@@ -1,48 +1,23 @@
-dwm - dynamic window manager
+SuperAwesomeCool DWM Configuration
 ============================
-dwm is an extremely fast, small, and dynamic window manager for X.
 
+This is my personal DWM config, which I've been using (with occasional changes) for the past couple of years. Some keybindings are different, but I don't feel like enumerating them so just check config.def.h if you're interested.  
 
-Requirements
-------------
-In order to build dwm you need the Xlib header files.
+Status bar not included (dwmblocks and all my bash status bar widgets are in my [Dotfiles](https://github.com/techno-sorcery/Dotfiles) repo)  
 
-
-Installation
-------------
-Edit config.mk to match your local setup (dwm is installed into
-the /usr/local namespace by default).
-
-Afterwards enter the following command to build and install dwm (if
-necessary as root):
-
-    make clean install
-
-
-Running dwm
------------
-Add the following line to your .xinitrc to start dwm using startx:
-
-    exec dwm
-
-In order to connect dwm to a specific display, make sure that
-the DISPLAY environment variable is set correctly, e.g.:
-
-    DISPLAY=foo.bar:1 exec dwm
-
-(This will start dwm on display :1 of the host foo.bar.)
-
-In order to display status info in the bar, you can do something
-like this in your .xinitrc:
-
-    while xsetroot -name "`date` `uptime | sed 's/.*,//'`"
-    do
-    	sleep 1
-    done &
-    exec dwm
-
-
-Configuration
--------------
-The configuration of dwm is done by creating a custom config.h
-and (re)compiling the source code.
+Patch List
+---
+- actualfullscreen - Adds keybind to make windows fill the whole screen, without any borders  
+- adjacenttag - Adds keybinds to switch to adjacent tags
+- alpha - Adds transparency to the status bar
+- attachbottom - Causes new windows to be attached to the stack bottom
+- vanitygaps - Useless gap plugin I used for a while but disabled
+- cyclelayouts - Adds keybinds to cycle between enabled layouts
+- hide_vacant_tags - hides... vacant tags! *gasp!*
+- pertag - Layouts are now assigned per-tag, rather than being universally applied
+- push_no_master - Adds keybinds to move windows within the stack
+- removeborder - Doesn't draw borders if a single window is on-screen
+- restartsig - Adds keybind to restart dwm
+- statuspadding - Adds padding to the status bar
+- swallow - Terminal windows now swallow applications launched from them
+- warp - Cursor is automatically "warped" between selected windows/screens
