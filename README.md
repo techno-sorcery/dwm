@@ -1,9 +1,7 @@
 SuperAwesomeCool DWM Configuration
 ============================
 
-This is my personal DWM config, which I've been using (with occasional changes) for the past couple of years. Some keybindings are different, but I don't feel like enumerating them so just check config.def.h if you're interested.  
-
-Status bar not included (dwmblocks and all my bash status bar widgets are in my [Dotfiles](https://github.com/techno-sorcery/Dotfiles) repo)  
+This is my personal DWM config, which I've been using (with occasional changes) for the past couple of years. Status bar not included (dwmblocks and all my bash status bar widgets are in my [Dotfiles](https://github.com/techno-sorcery/Dotfiles) repo).
 
 Patch List
 ---
@@ -21,3 +19,41 @@ Patch List
 - statuspadding - Adds padding to the status bar
 - swallow - Terminal windows now swallow applications launched from them
 - warp - Cursor is automatically "warped" between selected windows/screens
+
+Keybinds (Some are different from default)
+---
+
+ Key                        | Function 
+ ---------------------------|--------------
+ Alt + p                    | Open rofi       
+ Alt + Shift + Enter        | Open Terminal
+ Alt + b                    | Toggle status bar
+ Alt + j/k                  | Focus windows
+ Alt + i/d                  | Inc./dec. master window #s
+ Alt + h/l                  | Horizontal resize
+ Alt + Enter                | Swap master <-> stack
+ Alt + Tab                  | Switch between last windows
+ Alt + t                    | Tiled Layout
+ Alt + v                    | Vertical Layout
+ Alt + g                    | Grid Layout
+ Alt + m                    | Monocle Layout
+ Alt +  Ctrl + h/l          | Cycle layouts
+ Alt + Shift + Space        | Toggle window floating
+ Alt + ,/.                  | Cycle monitors
+ Alt + Shift + ,/.          | Move window between monitors
+ Alt + Shift + h/l          | Cycle between tags
+ Alt + r                    | Refresh dwmblocks       
+ Alt + Shift + q            | Restart DWM
+ Alt + Shift + Ctrl + q     | Kill DWM
+
+ Macros
+ ---
+
+ Key                        | Function 
+ ---------------------------|--------------
+PrtSc                       | Screenshot with scrot
+Win + c                     | Open orpie calculator       
+Win + m                     | Open ncmpcpp music player
+Win + n                     | Open newsboat reader
+Win + b                     | Open Vivaldi browser
+Win + s                     | Open signal messenger
