@@ -1,5 +1,6 @@
 SuperAwesomeCool DWM Configuration
 ============================
+![Image of my DWM build](img1.png)
 
 This is my personal DWM config, which I've been using (with occasional changes) for the past couple of years. Status bar not included (dwmblocks and all my bash status bar widgets are in my [Dotfiles](https://github.com/techno-sorcery/Dotfiles) repo).
 
