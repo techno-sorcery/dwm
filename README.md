@@ -20,6 +20,7 @@ Patch List
 - statuspadding - Adds padding to the status bar
 - swallow - Terminal windows now swallow applications launched from them
 - warp - Cursor is automatically "warped" between selected windows/screens
+- xresources - Adds Xresources support
 
 Keybinds (Some are different from default)
 ---
