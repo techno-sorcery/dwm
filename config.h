@@ -4,16 +4,16 @@
 static unsigned int borderpx  = 3;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
-static unsigned int gappih    = 0;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 0;       /* vert inner gap between windows */
-static unsigned int gappoh    = 0;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 0;       /* vert outer gap between windows and screen edge */
-static int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
+static unsigned int gappih    = 5;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 5;       /* vert inner gap between windows */
+static unsigned int gappoh    = 5;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
+static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
 static int horizpadbar        = 0;        /* horizontal padding for statusbar */
 static int vertpadbar         = 4;        /* vertical padding for statusbar */
-static const char *fonts[]          = { "Terminus:size=10", "Noto Color Emoji:size=9"};
+static const char *fonts[]          = { "SF Pro Text:size=10", "Terminess Nerd Font:size=10", "Noto Color Emoji:size=9"};
 static char dmenufont[]       = "Terminus 10";
 /* static const char col_gray1[]       = "#222222"; */
 /* static const char col_gray2[]       = "#444444"; */
@@ -21,14 +21,14 @@ static char dmenufont[]       = "Terminus 10";
 /* static const char col_gray4[]       = "#eeeeee"; */
 /* static consconst t char col_cyan[]        = "#005577"; */
 static const unsigned int baralpha = 0xc0;
-static const unsigned int borderalpha = OPAQUE;
+static const unsigned int borderalpha = 0xc0;
 
 static char norm_fg[]               = "#dadada";
 static char norm_bg[]               = "#0a0a0a";
 static char norm_border[]            = "#555555";
 
 static char sel_fg[]                = "#dadada";
-static char sel_bg[]                = "#cc0700";
+static char sel_bg[]                = "#5c5c5c";
 static char sel_border[]            = "#a8a8a8";
 
 static char roficonfig[]            = "~/.config/rofi/dmenu.rasi";
@@ -75,20 +75,20 @@ static int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 static const Layout layouts[] = {
     /* symbol     arrange function */
-    { "[]=",      tile },    /* first entry is default */
+    { "󰯌 ",      tile },    /* first entry is default */
     /* { "[@]",      spiral }, */
     /* { "[\\]",     dwindle }, */
     /* { "H[]",      deck }, */
-    { "TTT",      bstack },
-    { "===",      bstackhoriz },
+    { "󰯋 ",      bstack },
+    { " ",      bstackhoriz },
     /* { "HHH",      grid }, */
     /* { "###",      nrowgrid }, */
     /* { "---",      horizgrid }, */
-    { ":::",      gaplessgrid },
+    { "󰋁 ",      gaplessgrid },
     /* { "|M|",      centeredmaster }, */
     /* { ">M>",      centeredfloatingmaster }, */
-    { "[M]",      monocle },
-    { "><>",      NULL },    /* no layout function means floating behavior */
+    { "",      monocle },
+    { "󰟢",      NULL },    /* no layout function means floating behavior */
     { NULL,       NULL },
 };
 
