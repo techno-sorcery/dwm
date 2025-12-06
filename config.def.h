@@ -1,13 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static unsigned int borderpx  = 3;        /* border pixel of windows */
+static unsigned int borderpx  = 2;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
-static int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
-static unsigned int gappih    = 3;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 3;       /* vert inner gap between windows */
-static unsigned int gappoh    = 3;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 3;       /* vert outer gap between windows and screen edge */
+static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
+static unsigned int gappih    = 4;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 4;       /* vert inner gap between windows */
+static unsigned int gappoh    = 4;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 4;       /* vert outer gap between windows and screen edge */
 static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
@@ -21,7 +21,7 @@ static char dmenufont[]       = "Terminus 10";
 /* static const char col_gray4[]       = "#eeeeee"; */
 /* static consconst t char col_cyan[]        = "#005577"; */
 static const unsigned int baralpha = 0xc0;
-static const unsigned int borderalpha = 0xc0;
+static const unsigned int borderalpha = 0xa0;
 
 static char norm_fg[]               = "#dadada";
 static char norm_bg[]               = "#0a0a0a";
@@ -30,8 +30,6 @@ static char norm_border[]            = "#555555";
 static char sel_fg[]                = "#dadada";
 static char sel_bg[]                = "#5c5c5c";
 static char sel_border[]            = "#a8a8a8";
-
-static char roficonfig[]            = "~/.config/rofi/dmenu.rasi";
 
 /* static const char *colors[][3]      = { */
 /* 	/1*               fg         bg         border   *1/ */
@@ -59,8 +57,9 @@ static const Rule rules[] = {
      *	WM_CLASS(STRING) = instance, class
      *	WM_NAME(STRING) = title
      */
-    /* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+    /* class              instance  title           tags       mask  isfloating  isterminal  noswallow  monitor */
     { "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
+    { "pavucontrol",      NULL,     NULL,           0,         1,          0,           1,        -1 },
     { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -107,7 +106,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 /* static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL }; */
-static const char *dmenucmd[] = { "rofi", "-show", "drun", "-theme", roficonfig, "-drun-display-format", "{name}", NULL };
+static const char *dmenucmd[] = { "rofi", "-show", "drun", NULL };
 static const char *termcmd[]  = { "st", NULL };
 
 
@@ -117,7 +116,6 @@ static const char *termcmd[]  = { "st", NULL };
 ResourcePref resources[] = {
     /* { "baralpha",           INTEGER, &baralpha }, */
     /* { "borderalpha",        INTEGER, &borderalpha }, */
-    { "roficonfig",         STRING,  &roficonfig },
     { "norm_bg",            STRING,  &norm_bg },
     { "norm_border",        STRING,  &norm_border },
     { "norm_fg",            STRING,  &norm_fg },
