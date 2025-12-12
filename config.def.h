@@ -60,6 +60,7 @@ static const Rule rules[] = {
     /* class              instance  title           tags       mask  isfloating  isterminal  noswallow  monitor */
     { "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
     { "pavucontrol",      NULL,     NULL,           0,         1,          0,           1,        -1 },
+    { "Arandr",           NULL,     NULL,           0,         1,          1,           1,        -1 },
     { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -224,8 +225,8 @@ static const Key keys[] = {
 
         // Execute programs
         { ALTMOD,                       XK_c,      spawn,          SHCMD("st -T orpie -e orpie") },
-        { ALTMOD,                       XK_m,      spawn,          SHCMD("st -T ncmpcpp -e ncmpcpp") },
-        { ALTMOD,                       XK_n,      spawn,          SHCMD("st -T newsboat -e newsboat") },
+        // { ALTMOD,                       XK_m,      spawn,          SHCMD("st -T ncmpcpp -e ncmpcpp") },
+        // { ALTMOD,                       XK_n,      spawn,          SHCMD("st -T newsboat -e newsboat") },
         { ALTMOD,                       XK_b,      spawn,          SHCMD("flatpak run com.vivaldi.Vivaldi") },
         { ALTMOD,                       XK_s,      spawn,          SHCMD("flatpak run org.signal.Signal") },
 };
