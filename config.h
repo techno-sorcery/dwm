@@ -4,15 +4,15 @@
 static unsigned int borderpx  = 2;        /* border pixel of windows */
 static unsigned int snap      = 32;       /* snap pixel */
 static int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
-static unsigned int gappih    = 4;       /* horiz inner gap between windows */
-static unsigned int gappiv    = 4;       /* vert inner gap between windows */
-static unsigned int gappoh    = 4;       /* horiz outer gap between windows and screen edge */
-static unsigned int gappov    = 4;       /* vert outer gap between windows and screen edge */
+static unsigned int gappih    = 6;       /* horiz inner gap between windows */
+static unsigned int gappiv    = 6;       /* vert inner gap between windows */
+static unsigned int gappoh    = 6;       /* horiz outer gap between windows and screen edge */
+static unsigned int gappov    = 6;       /* vert outer gap between windows and screen edge */
 static int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
 static int showbar            = 1;        /* 0 means no bar */
 static int topbar             = 1;        /* 0 means bottom bar */
-static int horizpadbar        = 0;        /* horizontal padding for statusbar */
-static int vertpadbar         = 4;        /* vertical padding for statusbar */
+static int horizpadbar        = 8;        /* horizontal padding for statusbar */
+static int vertpadbar         = 8;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "SF Pro Text:size=10", "Terminess Nerd Font:size=10", "Noto Color Emoji:size=9"};
 static char dmenufont[]       = "Terminus 10";
 /* static const char col_gray1[]       = "#222222"; */
@@ -20,7 +20,7 @@ static char dmenufont[]       = "Terminus 10";
 /* static const char col_gray3[]       = "#bbbbbb"; */
 /* static const char col_gray4[]       = "#eeeeee"; */
 /* static consconst t char col_cyan[]        = "#005577"; */
-static const unsigned int baralpha = 0xc0;
+static const unsigned int baralpha = 0x80;
 static const unsigned int borderalpha = 0xa0;
 
 static char norm_fg[]               = "#dadada";
@@ -61,6 +61,7 @@ static const Rule rules[] = {
     { "st-256color",      NULL,     NULL,           0,         0,          1,           0,        -1 },
     { "pavucontrol",      NULL,     NULL,           0,         1,          0,           1,        -1 },
     { "Arandr",           NULL,     NULL,           0,         1,          1,           1,        -1 },
+    { "st",            NULL,     "orpie",        0,         1,          1,           1,        -1 },
     { NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
 };
 
@@ -214,21 +215,26 @@ static const Key keys[] = {
         { MODKEY|ControlMask|ShiftMask, XK_q,      quit,           {0} }, 
 
         { MODKEY,                       XK_r,      spawn,          SHCMD("for i in $(seq 1 25); do pkill -RTMIN+$i dwmblocks; done") },
-        { 0,                            XK_Print,  spawn,          SHCMD("scrot -s -f /home/$USER/Photos/screenshots/%Y-%m-%d_%H:%M:%S.png") },
-        { ShiftMask,                    XK_Print,  spawn,          SHCMD("scrot /home/$USER/Photos/screenshots/%Y-%m-%d_%H:%M:%S.png") },
-        { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("light -A 10; pkill -RTMIN+2 dwmblocks") },
-        { 0,          XF86XK_MonBrightnessDown,    spawn,          SHCMD("light -U 10; pkill -RTMIN+2 dwmblocks") },
-        { 0,          XF86XK_AudioRaiseVolume,     spawn,          SHCMD("pulsemixer --change-volume +5; pkill -RTMIN+2 dwmblocks") },
-        { 0,          XF86XK_AudioLowerVolume,     spawn,          SHCMD("pulsemixer --change-volume -5; pkill -RTMIN+2 dwmblocks") },
-        { 0,          XF86XK_AudioMute,            spawn,          SHCMD("pulsemixer --toggle-mute; pkill -RTMIN+2 dwmblocks") },
+        { 0,                            XK_Print,  spawn,          SHCMD("eval $DWM_SCREENSHOT") },
+        { ShiftMask,                    XK_Print,  spawn,          SHCMD("eval $DWM_SCREENSHOT_FULL") },
+
+        { 0,          XF86XK_MonBrightnessUp,      spawn,          SHCMD("eval $DWM_BRIGHT_UP") },
+        { 0,          XF86XK_MonBrightnessDown,    spawn,          SHCMD("eval $DWM_BRIGHT_DOWN") },
+
+        { 0,          XF86XK_AudioRaiseVolume,     spawn,          SHCMD("eval $DWM_VOL_UP") },
+        { 0,          XF86XK_AudioLowerVolume,     spawn,          SHCMD("eval $DWM_VOL_DOWN") },
+        { 0,          XF86XK_AudioMute,            spawn,          SHCMD("eval $DWM_VOL_MUTE") },
         { 0,          XF86XK_AudioMicMute,         spawn,          SHCMD("amixer set Capture toggle") },
 
+        { 0,          XF86XK_Calculator,           spawn,          SHCMD("eval $DWM_CALCULATOR") },
+
         // Execute programs
-        { ALTMOD,                       XK_c,      spawn,          SHCMD("st -T orpie -e orpie") },
+        // { ALTMOD,                       XK_c,      spawn,          SHCMD("st -T orpie -e orpie") },
         // { ALTMOD,                       XK_m,      spawn,          SHCMD("st -T ncmpcpp -e ncmpcpp") },
         // { ALTMOD,                       XK_n,      spawn,          SHCMD("st -T newsboat -e newsboat") },
-        { ALTMOD,                       XK_b,      spawn,          SHCMD("flatpak run com.vivaldi.Vivaldi") },
-        { ALTMOD,                       XK_s,      spawn,          SHCMD("flatpak run org.signal.Signal") },
+        { ALTMOD,                       XK_b,      spawn,          SHCMD("eval $DWM_BROWSER") },
+        { ALTMOD,                       XK_c,      spawn,          SHCMD("eval $DWM_CALCULATOR") },
+        { ALTMOD,                       XK_m,      spawn,          SHCMD("eval $DWM_MESSENGER") },
 };
 
 /* button definitions */
